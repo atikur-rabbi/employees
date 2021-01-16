@@ -3,6 +3,7 @@ import Head from 'next/head'
 import {useRouter} from 'next/router'
 import Link from 'next/link'
 import {deleteEmp} from '../../utils/fetch_fun'
+import url from 'url'
 const { Header, Footer, Content } = Layout;
 
 const absoluteUrl = (req, setLocalhost) => {
@@ -23,7 +24,7 @@ const absoluteUrl = (req, setLocalhost) => {
 export async function getServerSideProps(context) {
   console.log('fetching..')
   try {
-    const baseUrl = '/' // absoluteUrl(context.req, 'localhost:3000')
+    const baseUrl =  absoluteUrl(context.req, 'localhost:3000')
     const apiUrl = process.env.NODE_ENV === 'production' ? `${baseUrl}api/Employee` : 'http://localhost:9999/api/Employee'
     const res = await fetch(apiUrl, {method: 'GET'})
     const data = await res.json()
