@@ -22,15 +22,34 @@ import {useRouter} from 'next/router'
 import Link from 'next/link'
 import {getEmpId,updateEmp} from '../../utils/fetch_fun'
 import {useState, useEffect, useReducer} from 'react'
+import url from 'url'
 const { Header, Footer, Content } = Layout;
 const FormItem = Form.Item
 const Option = Select.Option
 import moment from 'moment';
 
+
+const absoluteUrl = (req, setLocalhost) => {
+  let protocol = 'https'
+  let host = req ? req.headers.host : window.location.hostname
+  if (host.indexOf('localhost') > -1) {
+      if (setLocalhost) host = setLocalhost
+      protocol = 'http'
+  }
+
+  return url.format({
+      protocol,
+      host,
+      pathname: '/' // req.url
+  })
+}
+
 export async function getServerSideProps(context) { 
   console.log('fetching..')
   try {
-    const res = await fetch(`http://localhost:2020/Employee/${context.params.id}`, {method: 'GET'})
+    const baseUrl =  absoluteUrl(context.req, 'localhost:3000')
+    const apiUrl = process.env.NODE_ENV === 'production' ? `${baseUrl}api/Employee` : 'http://localhost:9999/api/Employee'
+    const res = await fetch(apiUrl, {method: 'GET'})
     const data = await res.json()
     if(!data)
     return {
