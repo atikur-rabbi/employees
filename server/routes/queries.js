@@ -1,23 +1,5 @@
 const pool = require('../config').pool
 
-// new Pool({
-//   user: 'rncwitiu',
-//   host: 'raja.db.elephantsql.com',
-//   database: 'rncwitiu',
-//   password: 'dhf6famKoPg09tdCSiEvlnBbj73V6GtF',
-//   port: 5432,
-// })
-
-// postgres://rncwitiu:dhf6famKoPg09tdCSiEvlnBbj73V6GtF@raja.db.elephantsql.com:5432/rncwitiu
-// const pool = new Pool({
-//   user: 'me',
-//   host: 'localhost',
-//   database: 'api',
-//   password: 'password',
-//   port: 5432,
-// })
-
-
 const getEmployees = (request, response) => {
   pool.query('SELECT * FROM Employee ORDER BY id ASC', (error, results) => {
     if (error) {
