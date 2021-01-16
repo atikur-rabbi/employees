@@ -10,7 +10,7 @@ export default function Employee() {
   return (
     <Layout className="layout">
     <Head>
-        <title>Postem</title>
+        <title>Employee Management</title>
     </Head>
     <Header>
       <div className="logo" />
@@ -46,7 +46,7 @@ export default function Employee() {
     <Link href="/about">
         <a>About me..     </a>
     </Link>
-    Powered by PostBoy
+    Powered by We2app
     </Footer>
   </Layout>
   )
