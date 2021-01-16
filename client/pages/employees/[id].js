@@ -72,7 +72,7 @@ export async function getServerSideProps(context) {
 export default function Edit(props) {
 
   const flag = "true"
-  const data = props.data.[0]
+  const data = props.data[0]
   const [body,  setBody ] = useState({First:data.first_name,Last:data.last_name,Act:data.is_active,Date:data.date_of_birth,Id:data.id})
   const dateFormat = 'YYYY/MM/DD';
 
