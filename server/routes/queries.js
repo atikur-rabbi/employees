@@ -1,4 +1,5 @@
-const pool = require('../config').pool
+const Pool = require('pg').Pool
+const pool = require('../config')
 
 const getEmployees = (request, response) => {
   pool.query('SELECT * FROM Employee ORDER BY id ASC', (error, results) => {
