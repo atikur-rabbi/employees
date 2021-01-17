@@ -49,7 +49,7 @@ export async function getServerSideProps(context) {
   try {
 
     const baseUrl =  absoluteUrl(context.req, 'localhost:3000')
-    const apiUrl = process.env.NODE_ENV === 'production' ? `${baseUrl}api/Employee/${context.params.id}` : `http://localhost:9999/api/Employee/${context.params.id}`
+    const apiUrl = process.env.NODE_ENV === 'production' ? `api/Employee/${context.params.id}` : `http://localhost:9999/api/Employee/${context.params.id}`
 
     const res = await fetch(apiUrl, {method: 'GET'})
     
